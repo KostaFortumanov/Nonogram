@@ -48,18 +48,22 @@ namespace Nonogram
 
             int nextI = i + (j + 1 == width ? 1 : 0);
             int nextJ = (j + 1) % width;
+
+            // прво пробуваме дека е точно полето
             board[i, j] = true;
             if(verify(i, j) && FindSolution(nextI, nextJ))
             {
                 return true;
             }
 
+            // ако не е можно точно, пробуваме грешно
             board[i, j] = false;
             if (verify(i, j) && FindSolution(nextI, nextJ))
             {
                 return true;
             }
 
+            // ако не е можно и грешно завршуваме
             return false;
         }
 

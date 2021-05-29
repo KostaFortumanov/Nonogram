@@ -7,13 +7,33 @@ namespace Nonogram
 {
     public class Game
     {
-        string[] values;
+        /// <summary>
+        /// Листа од броевите за секој ред и колона
+        /// </summary>
         List<string> nums;
+        /// <summary>
+        /// Листа од сите полиња
+        /// </summary>
         List<Rectangle> rectangles;
+        /// <summary>
+        /// Широчина на едно поле
+        /// </summary>
         float W;
+        /// <summary>
+        /// Висина на едно поле
+        /// </summary>
         float H;
+        /// <summary>
+        /// Големина на таблата 5, 10 15
+        /// </summary>
         int size;
+        /// <summary>
+        /// Дали класата ја користиме за играње или решавање
+        /// </summary>
         bool solve;
+        /// <summary>
+        /// Име на сликата што ја добиваме на крај
+        /// </summary>
         string name;
 
         public Game(string lvl)
@@ -43,7 +63,7 @@ namespace Nonogram
             }
             else
             {
-                values = lvl.Split(",");
+                string[] values = lvl.Split(",");
                 name = values[0];
                 float.TryParse(values[1].Split(" ")[0], out W);
                 float.TryParse(values[1].Split(" ")[1], out H);

@@ -7,17 +7,35 @@ namespace Nonogram
 {
     public class Rectangle
     {
+        /// <summary>
+        /// Положба на X координата
+        /// </summary>
         public float X { get; set; }
+        /// <summary>
+        /// Положба на Y координата
+        /// </summary>
         public float Y { get; set; }
         public float Width { get; set; }
         public float Height { get; set; }
+        /// <summary>
+        /// Каква боја треба да стане полето кога ќе ги пополниме сите полиња
+        /// </summary>
         public Color RealColor { get; set; }
+        /// <summary>
+        /// Дали е точно
+        /// </summary>
         public bool Correct { get; set; }
+        /// <summary>
+        /// Далие е стиснато
+        /// </summary>
         public bool IsHit { get; set; }
+        /// <summary>
+        /// Дали играта е завршена
+        /// </summary>
         public bool End { get; set; }
 
         private Color currentColor;
-        bool once = true;
+        private bool once = true;
 
         public Rectangle(float x, float y, float width, float height, Color realColor, bool correct)
         {
@@ -136,7 +154,7 @@ namespace Nonogram
                 g = RealColor.G;
             }
 
-            if (Math.Abs(b - RealColor.B) <= 10)
+            if (Math.Abs(b - RealColor.B) < 10)
             {
                 b = RealColor.B;
             }
@@ -144,11 +162,8 @@ namespace Nonogram
             currentColor = Color.FromArgb(r, g, b);
 
             if (once) {
-
-
                 X -= 75;
                 Y -= 75;
-                
                 once = false;
             }
         }
