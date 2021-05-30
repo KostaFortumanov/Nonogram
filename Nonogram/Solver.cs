@@ -7,7 +7,7 @@ namespace Nonogram
     
     public class Solver
     {
-        private List<List<int>> columngRequirements;
+        private List<List<int>> columnRequirements;
         private List<List<int>> rowRequirements;
         private int width;
         private int height;
@@ -15,7 +15,7 @@ namespace Nonogram
 
         public Solver(List<List<int>> columnRequirements, List<List<int>> rowRequirements, int width, int height)
         {
-            this.columngRequirements = columnRequirements;
+            this.columnRequirements = columnRequirements;
             this.rowRequirements = rowRequirements;
             this.width = width;
             this.height = height;
@@ -69,10 +69,10 @@ namespace Nonogram
 
         private bool verify(int i, int j)
         {
-            return verifyRow(columngRequirements[j], height, i, j) && verifyColumn(rowRequirements[i], width, j, i);
+            return verifyColumn(columnRequirements[j], height, i, j) && verifyRow(rowRequirements[i], width, j, i);
         }
 
-        private bool verifyRow(List<int> requirements, int maxLength, int length, int j)
+        private bool verifyColumn(List<int> requirements, int maxLength, int length, int j)
         {
             int k = 0;
             int acc = 0;
@@ -128,7 +128,7 @@ namespace Nonogram
             return true;
         }
 
-        private bool verifyColumn(List<int> requirements, int maxLength, int length, int j)
+        private bool verifyRow(List<int> requirements, int maxLength, int length, int j)
         {
             int k = 0;
             int acc = 0;
