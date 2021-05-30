@@ -223,8 +223,6 @@ namespace Nonogram
                 btnPrev.Enabled = false;
             }
             btnNext.Enabled = true;
-            btnRestart.Visible = false;
-            gameOver = false;
             StartGame(levels[levelIndex]);
             Invalidate();
         }
@@ -239,11 +237,6 @@ namespace Nonogram
             btnPrev.Enabled = true;
             StartGame(levels[levelIndex]);
             Invalidate();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void btnSolver_Click(object sender, EventArgs e)
