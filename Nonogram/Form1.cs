@@ -14,7 +14,7 @@ namespace Nonogram
 {
     public partial class Form1 : Form
     {
-        Timer timer;
+        readonly Timer timer;
         Game game;
         bool mouseDown;
         int mistakeCount;
@@ -23,8 +23,8 @@ namespace Nonogram
         bool solve;
         bool gameOver;
         List<Control> textBoxes;
-        string[] initTextBoxes = { "3", "4", "5", "4", "5", "6", "3 2 1", "2 2 5", "4 2 6", "8 2 3", "8 2 1 1", "2 6 2 1", "4 6", "2 4", "1",
-                                    "3", "5", "4 3", "7", "5", "3", "5", "1 8", "3 3 3", "7 3 2", "5 4 2", "8 2", "10", "2 3", "6"};
+        readonly string[] initTextBoxes = { "3", "4", "5", "4", "5", "6", "3 2 1", "2 2 5", "4 2 6", "8 2 3", "8 2 1 1", "2 6 2 1", "4 6", "2 4", "1",
+                                            "3", "5", "4 3", "7", "5", "3", "5", "1 8", "3 3 3", "7 3 2", "5 4 2", "8 2", "10", "2 3", "6"};
         int boardWidth;
         public Form1()
         {
@@ -32,17 +32,18 @@ namespace Nonogram
             DoubleBuffered = true;
             this.Width = 750;
             this.Height = 760;
-            //StartGame("lvl1.txt");
             mouseDown = false;
-            timer = new Timer();
-            timer.Interval = 70;
-            timer.Tick += new EventHandler(timer_tick);
+            timer = new Timer
+            {
+                Interval = 70
+            };
+            timer.Tick += new EventHandler(Timer_tick);
             textBoxes = new List<Control>();
             solve = false;
             gameOver = false;
         }
 
-        private void timer_tick(object sender, EventArgs e)
+        private void Timer_tick(object sender, EventArgs e)
         {
             game.ChangeColor();
             Invalidate();
@@ -282,12 +283,13 @@ namespace Nonogram
             int x = point_x, y = point_y;
             for (int i = 0; i < boardWidth; i++)
             {
-                RichTextBox rtb = new RichTextBox();
-                rtb.Name = "tbc" + i;
-                rtb.Width = 20;
-                rtb.Height = 113;
-                Point point = new Point(x, y);
-                rtb.Location = point;
+                RichTextBox rtb = new RichTextBox
+                {
+                    Name = "tbc" + i,
+                    Width = 20,
+                    Height = 113,
+                    Location = new Point(x, y)
+                };
                 textBoxes.Add(rtb);
                 Controls.Add(rtb);
                 x += increment;
@@ -297,12 +299,13 @@ namespace Nonogram
             y = point_x;
             for (int i = 0; i < boardWidth; i++)
             {
-                RichTextBox rtb = new RichTextBox();
-                rtb.Name = "tbr" + i;
-                rtb.Width = 113;
-                rtb.Height = 20;
-                Point point = new Point(x, y);
-                rtb.Location = point;
+                RichTextBox rtb = new RichTextBox
+                {
+                    Name = "tbc" + i,
+                    Width = 113,
+                    Height = 20,
+                    Location = new Point(x, y)
+                };
                 textBoxes.Add(rtb);
                 Controls.Add(rtb);
                 y += increment;
